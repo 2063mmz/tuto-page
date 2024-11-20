@@ -1,0 +1,1019 @@
+[4mLYNX[24m(1)                                         Lynx – the [4mtext[24m web browser                                         [4mLYNX[24m(1)
+
+[1mNAME[0m
+       lynx - a general purpose distributed information browser for the World Wide Web
+
+[1mSYNOPSIS[0m
+       [1mlynx [4m[22m[options][24m [4m[optional[24m [4mpaths[24m [4mor[24m [4mURLs][0m
+
+       [1mlynx [4m[22m[options][24m [4m[path[24m [4mor[24m [4mURL][24m [1m-get_data[0m
+       [4mdata[0m
+       [1m--[0m
+
+       [1mlynx [4m[22m[options][24m [4m[path[24m [4mor[24m [4mURL][24m [1m-post_data[0m
+       [4mdata[0m
+       [1m--[0m
+
+       Use “lynx -help” to display a complete list of current options.
+
+[1mDESCRIPTION[0m
+       [4mLynx[24m  is  a  fully-featured World Wide Web (WWW) client for users running cursor-addressable, character-cell display
+       devices (e.g., vt100 terminals, vt100 emulators running on Windows or any POSIX  platform,  or  any  other  “curses-
+       oriented”  display).   It will display hypertext markup language (HTML) documents containing links to files residing
+       on the local system, as well as files residing on remote systems running Gopher, HTTP, FTP, WAIS, and NNTP servers.
+
+       [4mLynx[24m has been ported to many systems, including all variants of Unix, Windows (since  Windows  95),  DOS  DJGPP  and
+       OS/2, as well as VMS and OS/390.
+
+       [4mLynx[24m can be used to access information on the World Wide Web, or to build information systems intended primarily for
+       local  access.   For  example,  [4mLynx[24m  has  been  used  to  build several Campus Wide Information Systems (CWIS).  In
+       addition, [4mLynx[24m can be used to build systems isolated within a single LAN.
+
+[1mOPTIONS[0m
+       At start up, [4mLynx[24m will load any local file or remote URL specified at the command line.  For help with  URLs,  press
+       “[1m?[22m”  or “[1mH[22m” while running [4mLynx[24m.  Then follow the link titled, “Help on URLs.”
+
+       If more than one local file or remote URL is listed on the command line, [4mLynx[24m will open only the last interactively.
+       All of the names (local files and remote URLs) are added to the [1mG)oto [22mhistory.
+
+       [4mLynx[24m  uses only long option names.  Option names can begin with double dash “--” as well, underscores and dashes can
+       be intermixed in option names (in the reference below, options are shown with one dash “-”  before  them,  and  with
+       underscores “_”).
+
+       [4mLynx[24m provides many command-line options.  Some options require a value (string, number or keyword).  These are noted
+       in  the  reference  below.   The  other options set boolean values in the program.  There are three types of boolean
+       options: set, unset and toggle.  If no option value is given, these have the obvious meaning: set (to  true),  unset
+       (to  false), or toggle (between true/false).  For any of these, an explicit value can be given in different forms to
+       allow for operating system constraints, e.g.,
+
+           [1m-center:off[0m
+           [1m-center=off[0m
+           [1m-center-[0m
+
+       [4mLynx[24m recognizes “1”, “+”, “on” and “true” for true values, and “0”, “-”, “off” and “false” for false values.   Other
+       option-values are ignored.
+
+       The  default  boolean, number and string option values that are compiled into [4mLynx[24m are displayed in the help-message
+       provided by [1mlynx -help[22m.  Some of those may differ according to how [4mLynx[24m was built; see the help message  itself  for
+       these  values.   The  [1m-help  [22moption is processed in the third pass of options-processing, so any option which sets a
+       value, as well as runtime configuration values are reflected in the help-message.
+
+       [1m-      [22mIf the argument is only “-”, then [4mLynx[24m expects to receive the arguments from the standard input.  This is  to
+              allow  for  the  potentially  very  long command line that can be associated with the [1m-get_data [22mor [1m-post_data[0m
+              arguments (see below).  It can also be used to avoid having sensitive information  in  the  invoking  command
+              line (which would be visible to other processes on most systems), especially when the [1m-auth [22mor [1m-pauth [22moptions
+              are used.
+
+       [1m-accept_all_cookies[0m
+              accept all cookies.
+
+       [1m-anonymous[0m
+              apply restrictions for anonymous account, see also [1m-restrictions[22m.
+
+       [1m-assume_charset[22m=[4mMIMEname[0m
+              charset for documents that do not specify it.
+
+       [1m-assume_local_charset[22m=[4mMIMEname[0m
+              charset assumed for local files, i.e., files which [4mLynx[24m creates such as internal pages for the options menu.
+
+       [1m-assume_unrec_charset[22m=[4mMIMEname[0m
+              use this instead of unrecognized charsets.
+
+       [1m-auth[22m=[4mID[24m:[4mPASSWD[0m
+              set  authorization  ID  and password for protected documents at startup.  Be sure to protect any script files
+              which use this switch.
+
+       [1m-base  [22mprepend a request URL comment and BASE tag to text/html outputs for [1m-source [22mdumps.
+
+       [1m-bibhost[22m=[4mURL[0m
+              specify a local bibp server (default http://bibhost/).
+
+       [1m-blink [22mforces high intensity background colors for color mode, if available and supported  by  the  terminal.   This
+              applies to the [1mslang [22mlibrary (for a few terminal emulators), or to OS/2 EMX with [1mncurses[22m.
+
+       [1m-book  [22muse  the  bookmark  page  as  the startfile.  The default or command line startfile is still set for the Main
+              screen command, and will be used if the bookmark page is unavailable or blank.
+
+       [1m-buried_news[0m
+              toggles scanning of news articles for buried references, and converts them to news  links.   Not  recommended
+              because  email  addresses  enclosed  in  angle  brackets will be converted to false news links, and uuencoded
+              messages can be trashed.
+
+       [1m-cache[22m=[4mNUMBER[0m
+              set the NUMBER of documents cached in memory.  The default is 10.
+
+       [1m-case  [22menable case-sensitive string searching.
+
+       [1m-center[0m
+              toggles center alignment in HTML TABLE.  Normally table cells are centered  on  the  table  grid.   Set  this
+              option “on” to disable centering.  The default is “off”.
+
+       [1m-cfg[22m=[4mFILENAME[0m
+              specifies a [4mLynx[24m configuration file other than the default lynx.cfg.
+
+       [1m-child [22mexit on left-arrow in startfile, and disable save to disk and associated print/mail options.
+
+       [1m-child_relaxed[0m
+              exit on left-arrow in startfile, but allow save to disk and associated print/mail options.
+
+       [1m-cmd_log[22m=[4mFILENAME[0m
+              write keystroke commands and related information to the specified file.
+
+       [1m-cmd_script[22m=[4mFILENAME[0m
+              read  keystroke  commands  from  the specified file.  You can use the data written using the [1m-cmd_log [22moption.
+              [4mLynx[24m will ignore other information which the command-logging may have written to the logfile.  Each  line  of
+              the command script contains either a comment beginning with “#”, or a keyword:
+
+              [1mexit[0m
+                 causes the script to stop, and forces [4mLynx[24m to exit immediately.
+
+              [1mkey[0m
+                 the  character  value,  in  printable form.  Cursor and other special keys are given as names, e.g., “Down
+                 Arrow”.  Printable 7-bit ASCII codes are given as-is, and hexadecimal values represent other 8-bit codes.
+
+              [1mset[0m
+                 followed by a “name=value” allows one to override values set in the lynx.cfg or .lynxrc files.  [4mLynx[24m tries
+                 the cfg-file setting first.
+
+       [1m-collapse_br_tags[0m
+              toggles collapsing of BR tags.
+
+       [1m-color [22mforces color mode on, if available.  Default color control sequences which work for many terminal  types  are
+              assumed  if  the  terminal  capability  description  does  not specify how to handle color.  [4mLynx[24m needs to be
+              compiled with the [1mslang [22mlibrary for this  flag,  it  is  equivalent  to  setting  the  [1mCOLORTERM  [22menvironment
+              variable.   (If color support is instead provided by a color-capable curses library like [1mncurses[22m, [4mLynx[24m relies
+              completely on the terminal description to determine whether color mode is possible,  and  this  flag  is  not
+              needed  and  thus unavailable.)  A saved show_color=always setting found in a .lynxrc file at startup has the
+              same effect.  A saved show_color=never found in .lynxrc on startup is overridden by this flag.
+
+       [1m-connect_timeout[22m=[4mN[0m
+              Sets the connection timeout, where N is given in seconds.
+
+       [1m-cookie_file[22m=[4mFILENAME[0m
+              specifies a file to use to read cookies.  If none is specified, the default value is ~/.lynx_cookies for most
+              systems, but ~/cookies for MS-DOS.
+
+       [1m-cookie_save_file[22m=[4mFILENAME[0m
+              specifies a file to use to store cookies.  If none is specified, the value given by [1m-cookie_file [22mis used.
+
+       [1m-cookies[0m
+              toggles handling of Set-Cookie headers.
+
+       [1m-core  [22mtoggles forced core dumps on fatal errors.  Turn this option off to ask [4mLynx[24m to force a core dump if a  fatal
+              error occurs.
+
+       [1m-crawl [22mwith  [1m-traversal,  [22moutput  each  page  to  a  file.  with [1m-dump[22m, format output as with [1m-traversal[22m, but to the
+              standard output.
+
+       [1m-curses_pads[0m
+              toggles the use of curses “pad” feature which supports left/right scrolling of the display.  The  feature  is
+              normally  available  for  curses  configurations, but inactive.  To activate it, use the “|” character or the
+              LINEWRAP_TOGGLE command.  Toggling this option makes the feature altogether unavailable.
+
+       [1m-debug_partial[0m
+              separate incremental display stages with MessageSecs delay
+
+       [1m-default_colors[0m
+              toggles the default-colors feature which is normally set in the lynx.cfg file.
+
+       [1m-delay [22madd DebugSecs delay after each progress-message
+
+       [1m-display[22m=[4mDISPLAY[0m
+              set the display variable for X rexec-ed programs.
+
+       [1m-display_charset[22m=[4mMIMEname[0m
+              set the charset for the terminal output.
+
+       [1m-dont_wrap_pre[0m
+              inhibit wrapping of text when [1m-dump[22m'ing and [1m-crawl[22m'ing, mark wrapped lines of <pre> in interactive session.
+
+       [1m-dump  [22mdumps the formatted output of the default document or those specified on the command line to standard output.
+              Unlike interactive mode, all documents are processed.  This can be used in the following way:
+
+                  lynx [1m-dump [22mhttp://www.subir.com/lynx.html
+
+              Files specified on the command line are formatted as HTML if their names end with one  of  the  standard  web
+              suffixes  such  as  “.htm”  or “.html”.  Use the [1m-force_html [22moption to format files whose names do not follow
+              this convention.
+
+       [1m-editor[22m=[4mEDITOR[0m
+              enable external editing, using the specified EDITOR.  (vi, ed, emacs, etc.)
+
+       [1m-emacskeys[0m
+              enable emacs-like key movement.
+
+       [1m-enable_scrollback[0m
+              toggles compatibility with communication programs' scrollback keys (may  be  incompatible  with  some  curses
+              packages).
+
+       [1m-error_file[22m=[4mFILE[0m
+              define a file where [4mLynx[24m will report HTTP access codes.
+
+       [1m-exec  [22menable local program execution (normally not configured).
+
+       [1m-fileversions[0m
+              include all versions of files in local VMS directory listings.
+
+       [1m-find_leaks[0m
+              toggle  memory  leak-checking.  Normally this is not compiled-into your executable, but when it is, it can be
+              disabled for a session.
+
+       [1m-force_empty_hrefless_a[0m
+              force HREF-less “A” elements to be empty (close them as soon as they are seen).
+
+       [1m-force_html[0m
+              forces the first document to be interpreted as HTML.
+
+              This is most useful when processing files specified on the command line which have an unrecognized suffix (or
+              the suffix is associated with a non-HTML type, such as “.txt” for plain text files).
+
+              [4mLynx[24m recognizes these file suffixes as HTML:
+
+                  “.ht3”,
+                  “.htm”,
+                  “.html3”,
+                  “.html”,
+                  “.htmlx”,
+                  “.php3”,
+                  “.php”,
+                  “.phtml”,
+                  “.sht”, and
+                  “.shtml”.
+
+       [1m-force_secure[0m
+              toggles forcing of the secure flag for SSL cookies.
+
+       [1m-forms_options[0m
+              toggles whether the Options Menu is key-based or form-based.
+
+       [1m-from  [22mtoggles transmissions of From headers.
+
+       [1m-ftp   [22mdisable ftp access.
+
+       [1m-get_data[0m
+              properly formatted data for a [4mget[24m form are read in from the standard input and passed to the form.  Input  is
+              terminated by a line that starts with “---”.
+
+              [4mLynx[24m  issues  an  HTTP  [1mGET[22m,  sending  the  form  to the path or URL given on the command-line and prints the
+              response of the server.  If no path or URL is given, [4mLynx[24m sends the form to the start-page.
+
+       [1m-head  [22msend a HEAD request for the mime headers.
+
+       [1m-help  [22mprint the [4mLynx[24m command syntax usage message, and exit.
+
+       [1m-hiddenlinks=[option][0m
+              control the display of hidden links.
+
+              [1mmerge[0m
+                 hidden links show up as bracketed numbers and are numbered together with other links in  the  sequence  of
+                 their occurrence in the document.
+
+              [1mlistonly[0m
+                 hidden  links are shown only on [1mL)ist [22mscreens and listings generated by [1m-dump [22mor from the [1mP)rint [22mmenu, but
+                 appear separately at the end of those lists.  This is the default behavior.
+
+              [1mignore[0m
+                 hidden links do not appear even in listings.
+
+       [1m-historical[0m
+              toggles use of “>” or “-->” as a terminator for comments.
+
+       [1m-homepage[22m=[4mURL[0m
+              set homepage separate from start page.
+
+       [1m-image_links[0m
+              toggles inclusion of links for all images.
+
+       [1m-index[22m=[4mURL[0m
+              set the default index file to the specified URL.
+
+       [1m-ismap [22mtoggles inclusion of ISMAP links when client-side MAPs are present.
+
+       [1m-justify[0m
+              do justification of text.
+
+       [1m-link[22m=[4mNUMBER[0m
+              starting count for lnk#.dat files produced by [1m-crawl[22m.
+
+       [1m-list_decoded[0m
+              for [1m-dump[22m, show URL-encoded links decoded.
+
+       [1m-list_inline[0m
+              for [1m-dump[22m, show the links inline with the text.
+
+       [1m-listonly[0m
+              for [1m-dump[22m, show only the list of links.
+
+       [1m-localhost[0m
+              disable URLs that point to remote hosts.
+
+       [1m-locexec[0m
+              enable local program execution from local files only (if [4mLynx[24m was compiled with local execution enabled).
+
+       [1m-lss[22m=[4mFILENAME[0m
+              specify filename containing color-style information.   The  default  is  lynx.lss.   If  you  give  an  empty
+              filename, [4mLynx[24m uses a built-in monochrome scheme which imitates the non-color-style configuration.
+
+       [1m-mime_header[0m
+              prints the MIME header of a fetched document along with its source.
+
+       [1m-minimal[0m
+              toggles minimal versus valid comment parsing.
+
+       [1m-nested_tables[0m
+              toggles nested-tables logic (for debugging).
+
+       [1m-newschunksize[22m=[4mNUMBER[0m
+              number of articles in chunked news listings.
+
+       [1m-newsmaxchunk[22m=[4mNUMBER[0m
+              maximum news articles in listings before chunking.
+
+       [1m-nobold[0m
+              disable bold video-attribute.
+
+       [1m-nobrowse[0m
+              disable directory browsing.
+
+       [1m-nocc  [22mdisable  Cc:  prompts  for  self  copies  of  mailings.   Note  that  this does not disable any CCs which are
+              incorporated within a mailto URL or form ACTION.
+
+       [1m-nocolor[0m
+              force color mode off, overriding terminal capabilities and any -color flags, COLORTERM  variable,  and  saved
+              .lynxrc settings.
+
+       [1m-noexec[0m
+              disable local program execution.  (DEFAULT)
+
+       [1m-nofilereferer[0m
+              disable transmissions of Referer headers for file URLs.
+
+       [1m-nolist[0m
+              disable the link list feature in dumps.
+
+       [1m-nolog [22mdisable mailing of error messages to document owners.
+
+       [1m-nomargins[0m
+              disable left/right margins in the default style sheet.
+
+       [1m-nomore[0m
+              disable -more- string in statusline messages.
+
+       [1m-nonrestarting_sigwinch[0m
+              This  flag  is  not  available  on  all  systems,  [4mLynx[24m needs to be compiled with HAVE_SIGACTION defined.  If
+              available, this flag [4mmay[24m cause [4mLynx[24m to react more immediately to window changes when run within an [1mxterm[22m.
+
+       [1m-nonumbers[0m
+              disable link- and field-numbering.  This overrides [1m-number_fields [22mand [1m-number_links[22m.
+
+       [1m-nopause[0m
+              disable forced pauses for statusline messages.
+
+       [1m-noprint[0m
+              disable most print functions.
+
+       [1m-noredir[0m
+              prevents automatic redirection and prints a message with a link to the new URL.
+
+       [1m-noreferer[0m
+              disable transmissions of Referer headers.
+
+       [1m-noreverse[0m
+              disable reverse video-attribute.
+
+       [1m-nosocks[0m
+              disable SOCKS proxy usage by a SOCKSified [4mLynx[24m.
+
+       [1m-nostatus[0m
+              disable the retrieval status messages.
+
+       [1m-notitle[0m
+              disable title and blank line from top of page.
+
+       [1m-nounderline[0m
+              disable underline video-attribute.
+
+       [1m-number_fields[0m
+              force numbering of links as well as form input fields
+
+       [1m-number_links[0m
+              force numbering of links.
+
+       [1m-partial[0m
+              toggles display partial pages while loading.
+
+       [1m-partial_thres[22m=[4mNUMBER[0m
+              number of lines to render before repainting display with partial-display logic
+
+       [1m-passive_ftp[0m
+              toggles passive ftp connections.
+
+       [1m-pauth[22m=[4mID[24m:[4mPASSWD[0m
+              set authorization ID and password for a protected proxy server at startup.  Be sure  to  protect  any  script
+              files which use this switch.
+
+       [1m-popup [22mtoggles handling of single-choice SELECT options via popup windows or as lists of radio buttons.
+
+       [1m-post_data[0m
+              properly formatted data for a [4mpost[24m form are read in from the standard input and passed to the form.  Input is
+              terminated by a line that starts with “---”.
+
+              [4mLynx[24m  issues  an  HTTP  [1mPOST[22m,  sending  the  form to the path or URL given on the command-line and prints the
+              response of the server.  If no path or URL is given, [4mLynx[24m sends the form to the start-page.
+
+       [1m-preparsed[0m
+              show HTML source preparsed and reformatted when used with [1m-source [22mor in source view.
+
+       [1m-prettysrc[0m
+              show HTML source view with lexical elements and tags in color.
+
+       [1m-print [22menable print functions.  (default)
+
+       [1m-pseudo_inlines[0m
+              toggles pseudo-ALTs for inline images with no ALT string.
+
+       [1m-raw   [22mtoggles default setting of 8-bit character translations or CJK mode for the startup character set.
+
+       [1m-realm [22mrestricts access to URLs in the starting realm.
+
+       [1m-read_timeout[22m=[4mN[0m
+              Sets the read-timeout, where N is given in seconds.
+
+       [1m-reload[0m
+              flushes the cache on a proxy server (only the first document given on the command-line is affected).
+
+       [1m-restrictions[22m=[4m[option][,option][,option]...[0m
+              allows a list of services to be disabled  selectively.   Dashes  and  underscores  in  option  names  can  be
+              intermixed.  The following list is printed if no options are specified.
+
+              [1mall[0m
+                 restricts all options listed below.
+
+              [1mbookmark[0m
+                 disallow changing the location of the bookmark file.
+
+              [1mbookmark_exec[0m
+                 disallow execution links via the bookmark file.
+
+              [1mchange_exec_perms[0m
+                 disallow  changing  the  eXecute  permission on files (but still allow it for directories) when local file
+                 management is enabled.
+
+              [1mdefault[0m
+                 same as command line option [1m-anonymous[22m.  Disables default  services  for  anonymous  users.   Set  to  all
+                 restricted,   except   for:   inside_telnet,   outside_telnet,   inside_ftp,  outside_ftp,  inside_rlogin,
+                 outside_rlogin, inside_news, outside_news, telnet_port, jump, mail, print, exec, and goto.   The  settings
+                 for  these,  as  well  as additional goto restrictions for specific URL schemes that are also applied, are
+                 derived from definitions within userdefs.h.
+
+              [1mdired_support[0m
+                 disallow local file management.
+
+              [1mdisk_save[0m
+                 disallow saving to disk in the download and print menus.
+
+              [1mdotfiles[0m
+                 disallow access to, or creation of, hidden (dot) files.
+
+              [1mdownload[0m
+                 disallow some downloaders in the download menu (does not imply disk_save restriction).
+
+              [1meditor[0m
+                 disallow external editing.
+
+              [1mexec[0m
+                 disable execution scripts.
+
+              [1mexec_frozen[0m
+                 disallow the user from changing the local execution option.
+
+              [1mexternals[0m
+                 disallow some “EXTERNAL” configuration lines if support for passing URLs to  external  applications  (with
+                 the EXTERN command) is compiled in.
+
+              [1mfile_url[0m
+                 disallow using [1mG)oto[22m, served links or bookmarks for file: URLs.
+
+              [1mgoto[0m
+                 disable the “g” (goto) command.
+
+              [1minside_ftp[0m
+                 disallow ftps for people coming from inside your domain (utmp required for selectivity).
+
+              [1minside_news[0m
+                 disallow USENET news posting for people coming from inside your domain (utmp required for selectivity).
+
+              [1minside_rlogin[0m
+                 disallow rlogins for people coming from inside your domain (utmp required for selectivity).
+
+              [1minside_telnet[0m
+                 disallow telnets for people coming from inside your domain (utmp required for selectivity).
+
+              [1mjump[0m
+                 disable the “j” (jump) command.
+
+              [1mmultibook[0m
+                 disallow multiple bookmarks.
+
+              [1mmail[0m
+                 disallow mail.
+
+              [1mnews_post[0m
+                 disallow USENET News posting.
+
+              [1moptions_save[0m
+                 disallow saving options in .lynxrc.
+
+              [1moutside_ftp[0m
+                 disallow ftps for people coming from outside your domain (utmp required for selectivity).
+
+              [1moutside_news[0m
+                 disallow  USENET  news  reading  and posting for people coming from outside your domain (utmp required for
+                 selectivity).  This restriction applies to “news”, “nntp”, “newspost”, and “newsreply” URLs,  but  not  to
+                 “snews”, “snewspost”, or “snewsreply” in case they are supported.
+
+              [1moutside_rlogin[0m
+                 disallow rlogins for people coming from outside your domain (utmp required for selectivity).
+
+              [1moutside_telnet[0m
+                 disallow telnets for people coming from outside your domain (utmp required for selectivity).
+
+              [1mprint[0m
+                 disallow most print options.
+
+              [1mshell[0m
+                 disallow shell escapes and lynxexec or lynxprog [1mG)oto[22m's.
+
+              [1msuspend[0m
+                 disallow Unix Control-Z suspends with escape to shell.
+
+              [1mtelnet_port[0m
+                 disallow specifying a port in telnet [1mG)oto[22m's.
+
+              [1museragent[0m
+                 disallow modifications of the User-Agent header.
+
+       [1m-resubmit_posts[0m
+              toggles forced resubmissions (no-cache) of forms with method POST when the documents they returned are sought
+              with the PREV_DOC command or from the History List.
+
+       [1m-rlogin[0m
+              disable recognition of rlogin commands.
+
+       [1m-scrollbar[0m
+              toggles showing scrollbar.
+
+       [1m-scrollbar_arrow[0m
+              toggles showing arrows at ends of the scrollbar.
+
+       [1m-selective[0m
+              require .www_browsable files to browse directories.
+
+       [1m-session[22m=[4mFILENAME[0m
+              resumes from specified file on startup and saves session to that file on exit.
+
+       [1m-sessionin[22m=[4mFILENAME[0m
+              resumes session from specified file.
+
+       [1m-sessionout[22m=[4mFILENAME[0m
+              saves session to specified file.
+
+       [1m-short_url[0m
+              show  very  long  URLs in the status line with “...” to represent the portion which cannot be displayed.  The
+              beginning and end of the URL are displayed, rather than suppressing the end.
+
+       [1m-show_cfg[0m
+              Print the configuration settings, e.g., as read from “lynx.cfg”, and exit.
+
+       [1m-show_cursor[0m
+              If enabled the cursor will not be hidden in the right hand corner but will instead be positioned at the start
+              of the currently selected link.  Show cursor is the default for systems  without  FANCY_CURSES  capabilities.
+              The  default  configuration  can  be  changed in userdefs.h or lynx.cfg.  The command line switch toggles the
+              default.
+
+       [1m-show_rate[0m
+              If enabled the transfer rate is shown in bytes/second.  If disabled, no transfer rate is shown.  Use lynx.cfg
+              or the options menu to select KB/second and/or ETA.
+
+       [1m-socks5_proxy=URL[0m
+              (Via which) SOCKS5 proxy to connect: any network traffic, including all DNS resolutions but the one  for  URL
+              itself,   will   be  redirected  through  the  SOCKS5  proxy.   URL  may  be  given  as  “proxy.example.com”,
+              “proxy.example.com:1080”, “192.168.0.1”, or “192.168.0.1:1080” (and IPv6 notation if so supported).  A SOCKS5
+              proxy may also be specified via the environment variable [1mSOCKS5_PROXY.   [22mThis  option  controls  the  builtin
+              SOCKS5 support, which is unrelated to the option [1m-nosocks[22m.
+
+       [1m-soft_dquotes[0m
+              toggles  emulation  of the old Netscape and Mosaic bug which treated “>” as a co-terminator for double-quotes
+              and tags.
+
+       [1m-source[0m
+              works the same as dump but outputs HTML source instead of formatted text.  For example
+
+                  lynx -source . >foo.html
+
+              generates HTML source listing the files in the current directory.  Each file is marked by an HREF relative to
+              the parent directory.  Add a trailing slash to make the HREF's relative to the current directory:
+
+                  lynx -source ./ >foo.html
+
+       [1m-stack_dump[0m
+              disable SIGINT cleanup handler
+
+       [1m-startfile_ok[0m
+              allow non-http startfile and homepage with [1m-validate[22m.
+
+       [1m-stderr[0m
+              When dumping a document using [1m-dump [22mor [1m-source[22m, [4mLynx[24m normally does not display alert  (error)  messages  that
+              you see on the screen in the status line.  Use the [1m-stderr [22moption to tell [4mLynx[24m to write these messages to the
+              standard error.
+
+       [1m-stdin [22mread the startfile from standard input (UNIX only).
+
+       [1m-syslog[22m=[4mtext[0m
+              information for syslog call.
+
+       [1m-syslog_urls[0m
+              log requested URLs with syslog.
+
+       [1m-tagsoup[0m
+              initialize parser, using Tag Soup DTD rather than SortaSGML.
+
+       [1m-telnet[0m
+              disable recognition of telnet commands.
+
+       [1m-term[22m=[4mTERM[0m
+              tell [4mLynx[24m what terminal type to assume it is talking to.  (This may be useful for remote execution, when, for
+              example,  [4mLynx[24m  connects  to  a  remote  TCP/IP  port that starts a script that, in turn, starts another [4mLynx[0m
+              process.)
+
+       [1m-timeout[22m=[4mN[0m
+              For win32, sets the network read-timeout, where N is given in seconds.
+
+       [1m-tlog  [22mtoggles between using a [4mLynx[24m Trace Log and stderr for trace output from the session.
+
+       [1m-tna   [22mturns on “Textfields Need Activation” mode.
+
+       [1m-trace [22mturns on [4mLynx[24m trace mode.  Destination of trace output depends on -tlog.
+
+       [1m-trace_mask[22m=[4mvalue[0m
+              turn on optional traces, which may result in very large trace files.  Logically  OR  the  values  to  combine
+              options:
+
+              [1m1  [22mSGML character parsing states
+
+              [1m2  [22mcolor-style
+
+              [1m4  [22mTRST (table layout)
+
+              [1m8  [22mconfiguration (lynx.cfg, .lynxrc, .lynx-keymaps, mime.types and mailcap contents)
+
+              [1m16 [22mbinary string copy/append, used in form data construction.
+
+              [1m32 [22mcookies
+
+              [1m64 [22mcharacter sets
+
+              [1m128[0m
+                 GridText parsing
+
+              [1m256[0m
+                 timing
+
+              [1m512[0m
+                 detailed URL parsing
+
+       [1m-traversal[0m
+              traverse  all  http links derived from startfile.  When used with [1m-crawl[22m, each link that begins with the same
+              string as startfile is output to a file, intended for indexing.
+
+              See CRAWL.announce for more information.
+
+       [1m-trim_blank_lines[0m
+              toggles trimming of trailing blank lines as well as the related trimming of blank lines while  collapsing  BR
+              tags.
+
+       [1m-trim_input_fields[0m
+              trim input text/textarea fields in forms.
+
+       [1m-underline_links[0m
+              toggles use of underline/bold attribute for links.
+
+       [1m-underscore[0m
+              toggles use of _underline_ format in dumps.
+
+       [1m-unique_urls[0m
+              check for duplicate link numbers in each page and corresponding lists, and reuse the original link number.
+
+       [1m-update_term_title[0m
+              enables  updating  the  title in terminal emulators.  Use only if your terminal emulator supports that escape
+              code.  Has no effect when used with [1m-notitle[22m.
+
+       [1m-use_mouse[0m
+              turn on mouse support, if available.  Clicking the left mouse button on a link traverses  it.   Clicking  the
+              right  mouse button pops back.  Click on the top line to scroll up.  Click on the bottom line to scroll down.
+              The first few positions in the top and bottom line may invoke additional functions.  [4mLynx[24m  must  be  compiled
+              with  [1mncurses [22mor [1mslang [22mto support this feature.  If [1mncurses [22mis used, clicking the middle mouse button pops up
+              a simple menu.  Mouse clicks may only work reliably while [4mLynx[24m is idle waiting for input.
+
+       [1m-useragent=Name[0m
+              set alternate [4mLynx[24m User-Agent header.
+
+       [1m-validate[0m
+              accept only http URLs (for validation).  Complete security restrictions also are implemented.
+
+       [1m-verbose[0m
+              toggle [LINK], [IMAGE] and [INLINE] comments with filenames of these images.
+
+       [1m-version[0m
+              print version information, and exit.
+
+       [1m-vikeys[0m
+              enable vi-like key movement.
+
+       [1m-wdebug[0m
+              enable Waterloo tcp/ip packet debug (print to watt debugfile).  This applies only to  DOS  versions  compiled
+              with WATTCP or WATT-32.
+
+       [1m-width[22m=[4mNUMBER[0m
+              number of columns for formatting of dumps, default is 80.  This is limited by the number of columns that [4mLynx[0m
+              could display, typically 1024 (the [4mMAX_LINE[24m symbol).
+
+       [1m-with_backspaces[0m
+              emit backspaces in output if [1m-dump[22m'ing or [1m-crawl[22m'ing (like [1mman [22mdoes)
+
+       [1m-xhtml_parsing[0m
+              tells  [4mLynx[24m  that  it  can  ignore  certain tags which have no content in an XHTML 1.0 document.  For example
+              “<p/>” will be discarded.
+
+[1mCOMMANDS[0m
+       More than one key can be mapped to a given command.  Here are some of the most useful:
+
+       •   Use [1mUp arrow [22mand [1mDown arrow [22mto scroll through hypertext links.
+
+       •   [1mRight arrow [22mor [1mReturn [22mwill follow a highlighted hypertext link.
+
+       •   [1mLeft Arrow [22mor “[1mu[22m” will retreat from a link.
+
+       •   Type “[1mH[22m”, “[1m?[22m”, or [1mF1 [22mfor online help and descriptions of key-stroke commands.
+
+       •   Type “[1mk[22m” or “[1mK[22m” for a list of the current key-stroke command mappings.
+
+           If the same command is mapped to the same letter differing only by upper/lowercase only the lowercase mapping is
+           shown.
+
+       •   Type [1mDelete [22mto view history list.
+
+[1mENVIRONMENT[0m
+       In addition to various “standard” environment variables such as [1mDISPLAY[22m, [1mHOME[22m, [1mPATH[22m, [1mSHELL[22m, [1mTMPDIR[22m, [1mUSER[22m, etc., [4mLynx[0m
+       utilizes several [4mLynx[24m-specific environment variables, if they exist.
+
+       Others may be created or modified by [4mLynx[24m to pass data to an external program, or  for  other  reasons.   These  are
+       listed separately below.
+
+       See also the sections on [1mSIMULATED CGI SUPPORT [22mand [1mNATIVE LANGUAGE SUPPORT[22m, below.
+
+       Note:  Not all environment variables apply to all types of platforms supported by [4mLynx[24m, though most do.  Feedback on
+       platform dependencies is solicited.
+
+       Environment Variables Used By [4mLynx[24m:
+
+       [1mCOLORTERM           [22mIf  set,  color  capability  for  the  terminal  is forced on at startup time.  The actual value
+                           assigned to the variable is ignored.  This variable is only meaningful if [4mLynx[24m was  built  using
+                           the [1mslang [22mscreen-handling library.
+
+       [1mLYNX_CFG            [22mThis  variable,  if set, will override the default location and name of the global configuration
+                           file (normally, [1mlynx.cfg[22m) that was defined by the LYNX_CFG_FILE constant in the userdefs.h file,
+                           during installation.
+
+                           See the userdefs.h file for more information.
+
+       [1mLYNX_CFG_PATH       [22mIf set, this variable overrides the compiled-in search-list of  directories  used  to  find  the
+                           configuration  files,  e.g.,  [1mlynx.cfg [22mand [1mlynx.lss[22m.  The list is delimited with ":" (or ";" for
+                           Windows) like the [1mPATH [22menvironment variable.
+
+       [1mLYNX_HELPFILE       [22mIf set, this variable overrides the compiled-in URL and configuration file URL for the [4mLynx[24m help
+                           file.
+
+       [1mLYNX_LOCALEDIR      [22mIf set, this variable overrides the compiled-in location of the locale directory which  contains
+                           native language (NLS) message text.
+
+       [1mLYNX_LSS            [22mThis  variable,  if  set, specifies the location of the default [4mLynx[24m character style sheet file.
+                           [Currently only meaningful if [4mLynx[24m was built using curses color style support.]
+
+       [1mLYNX_SAVE_SPACE     [22mThis variable, if set, will override the default path prefix for files saved  to  disk  that  is
+                           defined in the [1mlynx.cfg SAVE_SPACE: [22mstatement.
+
+                           See the [1mlynx.cfg [22mfile for more information.
+
+       [1mLYNX_TEMP_SPACE     [22mThis  variable,  if  set,  will  override  the  default path prefix for temporary files that was
+                           defined during installation, as well as any value that may be assigned to the [1mTMPDIR [22mvariable.
+
+       [1mMAIL                [22mThis variable specifies the default inbox [4mLynx[24m will check for new  mail,  if  such  checking  is
+                           enabled in the [1mlynx.cfg [22mfile.
+
+       [1mNEWS_ORGANIZATION   [22mThis  variable,  if  set,  provides  the  string used in the [1mOrganization: [22mheader of [1mUSENET [22mnews
+                           postings.  It will override the setting of the ORGANIZATION environment variable, if it is  also
+                           set (and, on [1mUNIX[22m, the contents of an /etc/organization file, if present).
+
+       [1mNNTPSERVER          [22mIf  set,  this  variable  specifies  the  default  NNTP server that will be used for [1mUSENET [22mnews
+                           reading and posting with [4mLynx[24m, via news: URL's.
+
+       [1mORGANIZATION        [22mThis variable, if set, provides the string used in  the  [1mOrganization:  [22mheader  of  [1mUSENET  [22mnews
+                           postings.  On [1mUNIX[22m, it will override the contents of an /etc/organization file, if present.
+
+       [4mPROTOCOL[24m[1m_proxy      [4m[22mLynx[24m  supports  the  use of proxy servers that can act as firewall gateways and caching servers.
+                           They are preferable to the older gateway servers (see WWW_access_GATEWAY, below).
+
+                           Each protocol used by [4mLynx[24m, (http, ftp, gopher,  etc),  can  be  mapped  separately  by  setting
+                           environment  variables of the form [4mPROTOCOL[24m_proxy.  Protocols are indicated in a URI by the name
+                           before “:”, e.g., “http” in “http://some.server.dom:port/” for HTML.
+
+                           Depending on your system  configuration  and  supported  protocols,  the  environment  variables
+                           recognized by [4mlynx[24m may include
+
+                               cso_proxy
+                               finger_proxy
+                               ftp_proxy
+                               gopher_proxy
+                               http_proxy
+                               https_proxy
+                               news_proxy
+                               newspost_proxy
+                               newsreply_proxy
+                               nntp_proxy
+                               no_proxy
+                               rlogin_proxy
+                               snews_proxy
+                               snewspost_proxy
+                               snewsreply_proxy
+                               telnet_proxy
+                               tn3270_proxy
+                               wais_proxy
+
+                           See [1mLynx Users Guide [22mfor additional details and examples.
+
+       [1mRL_CLCOPY_CMD       [22mPipe the contents of the current link using this command as the target.
+
+       [1mRL_PASTE_CMD        [22mOpen  a  pipe  to read from this command, pasting it into the current editable-field or command-
+                           prompt.
+
+       [1mSOCKS5_PROXY        [22mIs inspected if [1m-socks5_proxy [22mhas not been used (for the same content).
+
+       [1mSSL_CERT_DIR        [22mSet to the directory containing trusted certificates.
+
+       [1mSSL_CERT_FILE       [22mSet to the full path and filename for your file of trusted certificates.
+
+       [1mWWW_[4m[22maccess[24m[1m_GATEWAY  [4m[22mLynx[24m still supports use of gateway servers, with the servers specified via  “WWW_[4maccess[24m_GATEWAY”
+                           variables  (where “[4maccess[24m” is lower case and can be “http”, “ftp”, “gopher” or “wais”).  However
+                           most gateway servers have been discontinued.  Note that you do not include a  terminal  “/”  for
+                           gateways, but do for proxies specified by [4mPROTOCOL[24m_proxy environment variables.
+
+                           See [1mLynx Users Guide [22mfor details.
+
+       [1mWWW_HOME            [22mThis  variable,  if  set,  will  override  the  default startup URL specified in any of the [4mLynx[0m
+                           configuration files.
+
+       Environment Variables [1mSet [22mor [1mModified [22mBy [4mLynx[24m:
+
+       [1mLYNX_PRINT_DATE     [22mThis variable is set by the [4mLynx[24m p(rint) function, to the [1mDate: [22mstring seen  in  the  document's
+                           “[1mInformation  about[22m”  page  (=  cmd),  if any.  It is created for use by an external program, as
+                           defined in a [1mlynx.cfg PRINTER: [22mdefinition statement.  If  the  field  does  not  exist  for  the
+                           document, the variable is set to a null string under [1mUNIX[22m, or “No Date” under [1mVMS[22m.
+
+       [1mLYNX_PRINT_LASTMOD  [22mThis  variable  is  set  by  the  [4mLynx[24m  p(rint)  function,  to  the [1mLast Mod: [22mstring seen in the
+                           document's “[1mInformation about[22m” page (= cmd), if any.  It is  created  for  use  by  an  external
+                           program,  as  defined  in a [1mlynx.cfg PRINTER: [22mdefinition statement.  If the field does not exist
+                           for the document, the variable is set to a null string under [1mUNIX[22m, or “No LastMod” under [1mVMS[22m.
+
+       [1mLYNX_PRINT_TITLE    [22mThis variable is set by the  [4mLynx[24m  p(rint)  function,  to  the  [1mLinkname:  [22mstring  seen  in  the
+                           document's  “[1mInformation  about[22m”  page  (=  cmd),  if any.  It is created for use by an external
+                           program, as defined in a [1mlynx.cfg PRINTER: [22mdefinition statement.  If the field  does  not  exist
+                           for the document, the variable is set to a null string under [1mUNIX[22m, or “No Title” under [1mVMS[22m.
+
+       [1mLYNX_PRINT_URL      [22mThis  variable  is  set  by the [4mLynx[24m p(rint) function, to the [1mURL: [22mstring seen in the document's
+                           “[1mInformation about[22m” page (= cmd), if any.  It is created for use  by  an  external  program,  as
+                           defined  in  a  [1mlynx.cfg  PRINTER:  [22mdefinition  statement.   If the field does not exist for the
+                           document, the variable is set to a null string under [1mUNIX[22m, or “No URL” under [1mVMS[22m.
+
+       [1mLYNX_TRACE          [22mIf set, causes [4mLynx[24m to write a trace file as if the [1m-trace [22moption were supplied.
+
+       [1mLYNX_TRACE_FILE     [22mIf set, overrides the compiled-in name  of  the  trace  file,  which  is  either  [1mLynx.trace  [22mor
+                           [1mLY-TRACE.LOG  [22m(the  latter  on  the  DOS/Windows  platforms).   The trace file is in either case
+                           relative to the home directory.
+
+       [1mLYNX_VERSION        [22mThis variable is always set by [4mLynx[24m, and may be used by an external program to determine  if  it
+                           was invoked by [4mLynx[24m.
+
+                           See  also  the  comments in the distribution's sample [1mmailcap [22mfile, for notes on usage in such a
+                           file.
+
+       [1mTERM                [22mNormally, this variable is used by [4mLynx[24m to determine the terminal  type  being  used  to  invoke
+                           [4mLynx[24m.   If,  however,  it is unset at startup time (or has the value “unknown”), or if the [1m-term[0m
+                           command-line option is used (see [1mOPTIONS [22msection above), [4mLynx[24m will set or modify  its  value  to
+                           the user specified terminal type (for the [4mLynx[24m execution environment).  Note: If set/modified by
+                           [4mLynx[24m, the values of the [1mLINES [22mand/or [1mCOLUMNS [22menvironment variables may also be changed.
+
+   [1mSimulated CGI Support[0m
+       If built with the [1mcgi-links [22moption enabled, [4mLynx[24m allows access to a cgi script directly without the need for an http
+       daemon.
+
+       When  executing  such  “lynxcgi  scripts”  (if  enabled),  the  following  variables may be set for simulating a CGI
+       environment:
+
+       [1mCONTENT_LENGTH[0m
+
+       [1mCONTENT_TYPE[0m
+
+       [1mDOCUMENT_ROOT[0m
+
+       [1mHTTP_ACCEPT_CHARSET[0m
+
+       [1mHTTP_ACCEPT_LANGUAGE[0m
+
+       [1mHTTP_USER_AGENT[0m
+
+       [1mPATH_INFO[0m
+
+       [1mPATH_TRANSLATED[0m
+
+       [1mQUERY_STRING[0m
+
+       [1mREMOTE_ADDR[0m
+
+       [1mREMOTE_HOST[0m
+
+       [1mREQUEST_METHOD[0m
+
+       [1mSERVER_SOFTWARE[0m
+
+       Other environment variables are not inherited by the script, unless they  are  provided  via  a  LYNXCGI_ENVIRONMENT
+       statement   in   the   configuration   file.   See  the  [1mlynx.cfg  [22mfile,  and  the  (draft)  CGI  1.1  Specification
+       <http://Web.Golux.Com/coar/cgi/draft-coar-cgi-v11-00.txt> for the definition and usage of these variables.
+
+       The CGI Specification, and other associated documentation, should be consulted for general information on CGI script
+       programming.
+
+   [1mNative Language Support[0m
+       If configured and installed with [1mNative Language Support[22m, [4mLynx[24m will display status and other messages in your  local
+       language.   See the file [1mABOUT_NLS [22min the source distribution, or at your local [1mGNU [22msite, for more information about
+       internationalization.
+
+       The following environment variables may be used to alter default settings:
+
+       [1mLANG                [22mThis variable, if set, will override the default message language.  It is an [1mISO 639  [22mtwo-letter
+                           code  identifying  the  language.  Language codes are [1mNOT [22mthe same as the country codes given in
+                           [1mISO 3166[22m.
+
+       [1mLANGUAGE            [22mThis variable, if set, will override the default message language.  This is a [1mGNU [22mextension that
+                           has higher priority for setting the message catalog than [1mLANG [22mor [1mLC_ALL[22m.
+
+       [1mLC_ALL              [22mand
+
+       [1mLC_MESSAGES         [22mThese variables, if set, specify the notion of  native  language  formatting  style.   They  are
+                           [1mPOSIXly [22mcorrect.
+
+       [1mLINGUAS             [22mThis variable, if set prior to configuration, limits the installed languages to specific values.
+                           It is a space-separated list of two-letter codes.  Currently, it is hard-coded to a wish list.
+
+       [1mNLSPATH             [22mThis variable, if set, is used as the path prefix for message catalogs.
+
+[1mNOTES[0m
+   [1mMailing Lists[0m
+       If  you  wish  to  contribute  to  the  further  development  of [4mLynx[24m, subscribe to our mailing list.  Send email to
+       <lynx-dev-request@nongnu.org> with “subscribe lynx-dev” as the only line in the body of your message.
+
+       Send bug reports, comments, suggestions to <lynx-dev@nongnu.org> after subscribing.
+
+       Unsubscribe by sending email to <lynx-dev-request@nongnu.org> with “unsubscribe lynx-dev” as the only  line  in  the
+       body of your message.  Do not send the unsubscribe message to the lynx-dev list, itself.
+
+   [1mAcknowledgments[0m
+       [4mLynx[24m  has  incorporated  code  from a variety of sources along the way.  The earliest versions of [4mLynx[24m included code
+       from Earl Fogel of Computing Services at the University of  Saskatchewan,  who  implemented  HYPERREZ  in  the  Unix
+       environment.   HYPERREZ  was developed by Niel Larson of Think.com and served as the model for the early versions of
+       [4mLynx[24m.  Those versions also incorporated libraries from the Unix  Gopher  clients  developed  at  the  University  of
+       Minnesota,  and  the later versions of [4mLynx[24m rely on the WWW client library code developed by Tim Berners-Lee and the
+       WWW community.  Also a special thanks to Foteos Macrides who ported much of [4mLynx[24m to VMS and did or organized most of
+       its development since the departures of Lou Montulli and Garrett Blythe from the University of Kansas in the  summer
+       of  1994  through the release of v2.7.2, and to everyone on the net who has contributed to [4mLynx[24m's development either
+       directly (through patches, comments or bug reports) or indirectly (through  inspiration  and  development  of  other
+       systems).
+
+[1mAUTHORS[0m
+       Lou Montulli, Garrett Blythe, Craig Lavender, Michael Grobe, Charles Rezac
+       Academic Computing Services
+       University of Kansas
+       Lawrence, Kansas 66047
+
+       Foteos Macrides
+       Worcester Foundation for Biomedical Research
+       Shrewsbury, Massachusetts 01545
+
+       Thomas E. Dickey
+       <dickey@invisible-island.net>
+
+[1mSEE ALSO[0m
+       [1mcatgets[22m(3),  [1mcurses[22m(3),  [1menviron[22m(7),  [1mftp[22m(1),  [1mgettext[22m(GNU),  [1mlocaleconv[22m(3),  [1mncurses[22m(3),  [1msetlocale[22m(3), [1mtermcap[22m(5),
+       [1mterminfo[22m(5)
+
+Lynx 2.9.0                                               2024-01-14                                                 [4mLYNX[24m(1)
